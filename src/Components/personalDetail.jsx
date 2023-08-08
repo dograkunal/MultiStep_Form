@@ -2,7 +2,12 @@ import React from "react";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 
-export default function personalDetail({ data, nextStep, previousStep }) {
+export default function personalDetail({
+  data,
+  nextStep,
+  setData,
+  previousStep,
+}) {
   return (
     <Formik
       initialValues={{
@@ -16,10 +21,6 @@ export default function personalDetail({ data, nextStep, previousStep }) {
         const newData = { ...data, ...values };
         setData(newData);
         nextStep();
-      }}
-      handleChange={(values) => {
-        const newData = { ...data, ...values };
-        setData(newData);
       }}
     >
       {({ values, errors, touched }) => (

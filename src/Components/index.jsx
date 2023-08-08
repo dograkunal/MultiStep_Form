@@ -40,8 +40,7 @@ export default function MultiStepSignup() {
     setData({ ...data, [name]: value });
   }
 
-  function handleSubmit(e) {
-    e.preventDefault();
+  function handleSubmit() {
     console.log(data);
   }
 
@@ -60,6 +59,7 @@ export default function MultiStepSignup() {
         <AddressDetail
           data={data}
           nextStep={nextStep}
+          setData={setData}
           previousStep={previousStep}
           handleChange={handleChange}
         />
@@ -69,6 +69,7 @@ export default function MultiStepSignup() {
         <PersonalDetail
           data={data}
           nextStep={nextStep}
+          setData={setData}
           previousStep={previousStep}
           handleChange={handleChange}
         />
@@ -77,6 +78,7 @@ export default function MultiStepSignup() {
       return (
         <FinalStep
           data={data}
+          setData={setData}
           previousStep={previousStep}
           handleChange={handleChange}
           handleSubmit={handleSubmit}
