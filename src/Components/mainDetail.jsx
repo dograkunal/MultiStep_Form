@@ -19,15 +19,21 @@ export default function mainDetail({ data, nextStep, setData }) {
         nextStep();
       }}
     >
-      {({ values, errors, touched }) => (
+      {({ values, errors, touched, handleChange }) => (
         <Form>
           <div>
             <label>First Name</label>
 
             <Field
               name="firstName"
+              id="firstName"
               placeholder="Bruce"
               value={values.firstName}
+              onChange={(e) => {
+                handleChange(e);
+                const newData = { ...data, ...values };
+                setData(newData);
+              }}
             />
             {errors.firstName && touched.firstName ? (
               <div>{errors.firstName}</div>
@@ -37,8 +43,14 @@ export default function mainDetail({ data, nextStep, setData }) {
             <label>Last Name</label>
             <Field
               name="lastName"
+              id="lastName"
               placeholder="Wayne"
               value={values.lastName}
+              onChange={(e) => {
+                handleChange(e);
+                const newData = { ...data, ...values };
+                setData(newData);
+              }}
             />
             {errors.lastName && touched.lastName ? (
               <div>{errors.lastName}</div>
@@ -48,9 +60,11 @@ export default function mainDetail({ data, nextStep, setData }) {
             <label>Age</label>
             <Field
               name="age"
+              id="age"
               type="number"
               placeholder="30"
               value={values.age}
+              onChange={handleChange}
             />
             {errors.age && touched.age ? <div>{errors.age}</div> : null}
           </div>
@@ -61,6 +75,11 @@ export default function mainDetail({ data, nextStep, setData }) {
               type="email"
               placeholder="abx@xyz.com"
               value={values.email}
+              onChange={(e) => {
+                handleChange(e);
+                const newData = { ...data, ...values };
+                setData(newData);
+              }}
             />
             {errors.email && touched.email ? <div>{errors.email}</div> : null}
           </div>
@@ -71,6 +90,11 @@ export default function mainDetail({ data, nextStep, setData }) {
               name="password"
               placeholder="XXXXXXXX"
               value={values.password}
+              onChange={(e) => {
+                handleChange(e);
+                const newData = { ...data, ...values };
+                setData(newData);
+              }}
             />
             {errors.password && touched.password ? (
               <div>{errors.password}</div>

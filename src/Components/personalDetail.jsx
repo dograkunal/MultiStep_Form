@@ -17,13 +17,11 @@ export default function personalDetail({
         motherOccupation: data.motherOccupation,
       }}
       validationSchema={ValidationSchema}
-      onSubmit={(values) => {
-        const newData = { ...data, ...values };
-        setData(newData);
+      onSubmit={() => {
         nextStep();
       }}
     >
-      {({ values, errors, touched }) => (
+      {({ values, errors, touched, handleChange }) => (
         <Form>
           <div>
             <label>Father's Name</label>
@@ -32,6 +30,11 @@ export default function personalDetail({
               name="fathername"
               placeholder="Thomas Wayne"
               value={values.fathername}
+              onChange={(e) => {
+                handleChange(e);
+                const newData = { ...data, ...values };
+                setData(newData);
+              }}
             />
             {errors.fathername && touched.fathername ? (
               <div>{errors.fathername}</div>
@@ -44,6 +47,11 @@ export default function personalDetail({
               name="mothername"
               placeholder="Martha Wayne"
               value={values.mothername}
+              onChange={(e) => {
+                handleChange(e);
+                const newData = { ...data, ...values };
+                setData(newData);
+              }}
             />
             {errors.mothername && touched.mothername ? (
               <div>{errors.mothername}</div>
@@ -56,6 +64,11 @@ export default function personalDetail({
               name="fatherOccupation"
               placeholder="Bussiness/Salaried"
               value={values.fatherOccupation}
+              onChange={(e) => {
+                handleChange(e);
+                const newData = { ...data, ...values };
+                setData(newData);
+              }}
             />
             {errors.fatherOccupation && touched.fatherOccupation ? (
               <div>{errors.fatherOccupation}</div>
@@ -68,6 +81,11 @@ export default function personalDetail({
               name="motherOccupation"
               placeholder="HouseMaker/Salaried"
               value={values.motherOccupation}
+              onChange={(e) => {
+                handleChange(e);
+                const newData = { ...data, ...values };
+                setData(newData);
+              }}
             />
             {errors.motherOccupation && touched.motherOccupation ? (
               <div>{errors.motherOccupation}</div>

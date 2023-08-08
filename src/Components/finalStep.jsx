@@ -23,7 +23,7 @@ export default function finalStep({
         handleSubmit();
       }}
     >
-      {({ values, errors, touched }) => (
+      {({ values, errors, touched, handleChange }) => (
         <Form>
           <div>
             <label>University</label>
@@ -32,6 +32,11 @@ export default function finalStep({
               name="college"
               placeholder=" "
               value={values.college}
+              onChange={(e) => {
+                handleChange(e);
+                const newData = { ...data, ...values };
+                setData(newData);
+              }}
             />
             {errors.college && touched.college ? (
               <div>{errors.college}</div>
@@ -44,6 +49,11 @@ export default function finalStep({
               name="collegePassYear"
               placeholder="2000"
               value={values.collegePassYear}
+              onChange={(e) => {
+                handleChange(e);
+                const newData = { ...data, ...values };
+                setData(newData);
+              }}
             />
             {errors.collegePassYear && touched.collegePassYear ? (
               <div>{errors.collegePassYear}</div>
@@ -56,6 +66,11 @@ export default function finalStep({
               name="school"
               placeholder=""
               value={values.school}
+              onChange={(e) => {
+                handleChange(e);
+                const newData = { ...data, ...values };
+                setData(newData);
+              }}
             />
             {errors.school && touched.school ? (
               <div>{errors.school}</div>
@@ -68,6 +83,11 @@ export default function finalStep({
               name="schoolPassYear"
               placeholder="2000"
               value={values.schoolPassYear}
+              onChange={(e) => {
+                handleChange(e);
+                const newData = { ...data, ...values };
+                setData(newData);
+              }}
             />
             {errors.schoolPassYear && touched.schoolPassYear ? (
               <div>{errors.schoolPassYear}</div>

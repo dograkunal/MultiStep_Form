@@ -16,13 +16,11 @@ export default function addressDetail({
         zipcode: data.zipcode,
       }}
       validationSchema={ValidationSchema}
-      onSubmit={(values) => {
-        const newData = { ...data, ...values };
-        setData(newData);
+      onSubmit={() => {
         nextStep();
       }}
     >
-      {({ values, errors, touched }) => (
+      {({ values, errors, touched, handleChange }) => (
         <Form>
           <div>
             <label>Address line 1</label>
@@ -31,6 +29,11 @@ export default function addressDetail({
               name="address1"
               placeholder=""
               value={values.address1}
+              onChange={(e) => {
+                handleChange(e);
+                const newData = { ...data, ...values };
+                setData(newData);
+              }}
             />
             {errors.address1 && touched.address1 ? (
               <div>{errors.address1}</div>
@@ -43,6 +46,11 @@ export default function addressDetail({
               name="address2"
               placeholder=""
               value={values.address2}
+              onChange={(e) => {
+                handleChange(e);
+                const newData = { ...data, ...values };
+                setData(newData);
+              }}
             />
             {errors.address2 && touched.address2 ? (
               <div>{errors.address2}</div>
@@ -55,6 +63,11 @@ export default function addressDetail({
               name="zipcode"
               placeholder="Zipcode"
               value={values.zipcode}
+              onChange={(e) => {
+                handleChange(e);
+                const newData = { ...data, ...values };
+                setData(newData);
+              }}
             />
             {errors.zipcode && touched.zipcode ? (
               <div>{errors.zipcode}</div>
