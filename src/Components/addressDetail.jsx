@@ -22,59 +22,73 @@ export default function addressDetail({
     >
       {({ values, errors, touched, handleChange }) => (
         <Form>
-          <div>
-            <label>Address line 1</label>
-            <Field
-              type="text"
-              name="address1"
-              placeholder=""
-              value={values.address1}
-              onChange={(e) => {
-                handleChange(e);
-                const newData = { ...data, ...values };
-                setData(newData);
-              }}
-            />
-            {errors.address1 && touched.address1 ? (
-              <div>{errors.address1}</div>
-            ) : null}
+          <div className="FormContainer">
+            <div className="FormFieldContainer">
+              <label className="FormLabel">Address line 1</label>
+              <Field
+                type="text"
+                name="address1"
+                placeholder="Address"
+                value={values.address1}
+                onChange={(e) => {
+                  handleChange(e);
+                  const newData = { ...data, ...values };
+                  setData(newData);
+                }}
+                className="FormField"
+              />
+              {errors.address1 && touched.address1 ? (
+                <i>{errors.address1}</i>
+              ) : null}
+            </div>
+            <div className="FormFieldContainer">
+              <label className="FormLabel">Address line 2</label>
+              <Field
+                type="text"
+                name="address2"
+                placeholder="Address"
+                value={values.address2}
+                onChange={(e) => {
+                  handleChange(e);
+                  const newData = { ...data, ...values };
+                  setData(newData);
+                }}
+                className="FormField"
+              />
+              {errors.address2 && touched.address2 ? (
+                <i>{errors.address2}</i>
+              ) : null}
+            </div>
+            <div className="FormFieldContainer">
+              <label className="FormLabel">zipcode</label>
+              <Field
+                type="number"
+                name="zipcode"
+                placeholder="Zipcode"
+                value={values.zipcode}
+                onChange={(e) => {
+                  handleChange(e);
+                  const newData = { ...data, ...values };
+                  setData(newData);
+                }}
+                className="FormField"
+              />
+              {errors.zipcode && touched.zipcode ? (
+                <i>{errors.zipcode}</i>
+              ) : null}
+            </div>
+            <div className="ButtonContainer">
+              <button
+                onClick={previousStep}
+                className="ButtonCls PreviousButton"
+              >
+                &larr; Previous
+              </button>
+              <button type="submit" className="ButtonCls nextButton">
+                Next &rarr;
+              </button>
+            </div>
           </div>
-          <div>
-            <label>Address line 2</label>
-            <Field
-              type="text"
-              name="address2"
-              placeholder=""
-              value={values.address2}
-              onChange={(e) => {
-                handleChange(e);
-                const newData = { ...data, ...values };
-                setData(newData);
-              }}
-            />
-            {errors.address2 && touched.address2 ? (
-              <div>{errors.address2}</div>
-            ) : null}
-          </div>
-          <div>
-            <label>zipcode</label>
-            <Field
-              type="number"
-              name="zipcode"
-              placeholder="Zipcode"
-              value={values.zipcode}
-              onChange={(e) => {
-                handleChange(e);
-                const newData = { ...data, ...values };
-                setData(newData);
-              }}
-            />
-            {errors.zipcode && touched.zipcode ? (
-              <div>{errors.zipcode}</div>
-            ) : null}
-          </div>
-          <button onClick={previousStep}>Previous Step</button>
-          <button type="submit">Next Step</button>
         </Form>
       )}
     </Formik>

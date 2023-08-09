@@ -1,90 +1,92 @@
-import React, { useState } from "react";
-import MainDetail from "./mainDetail";
-import AddressDetail from "./addressDetail";
-import FinalStep from "./finalStep";
-import PersonalDetail from "./personalDetail";
+import React, { useEffect, useState } from "react";
+import MultiStepSignup from "./form";
+import "./style.css";
 
-export default function MultiStepSignup() {
-  const initialState = {
-    firstName: "",
-    lastName: "",
-    age: 0,
-    email: "",
-    password: "",
-    address1: "",
-    address2: "",
-    zipcode: "",
-    college: "",
-    collegePassYear: 0,
-    school: "",
-    schoolPassYear: 0,
-    fathername: "",
-    mothername: "",
-    fatherOccupation: "",
-    motherOccupation: "",
-  };
-
+export default function FormContainer() {
   const [step, setStep] = useState(1);
-  const [data, setData] = useState(initialState);
+  const [stepName, setstepName] = useState({
+    name: true,
+    address: false,
+    details: false,
+    submission: false,
+  });
 
-  const nextStep = () => {
-    setStep(step + 1);
-  };
-
-  const previousStep = () => {
-    setStep(step - 1);
-  };
-
-  function handleChange(e) {
-    const { name, value } = e.target;
-    setData({ ...data, [name]: value });
+  function stepNumber() {
+    if (step === 1) {
+      return setstepName({
+        name: true,
+        address: false,
+        details: false,
+        submission: false,
+      });
+    } else if (step === 2) {
+      return setstepName({
+        ...stepName,
+        address: true,
+        details: false,
+        submission: false,
+      });
+    } else if (step === 3) {
+      return setstepName({
+        ...stepName,
+        details: true,
+        submission: false,
+      });
+    } else if (step === 4) {
+      return setstepName({
+        ...stepName,
+        submission: true,
+      });
+    } else {
+      return stepName;
+    }
   }
+  useEffect(() => {
+    stepNumber();
+  }, [step]);
 
-  function handleSubmit() {
-    console.log(data);
-  }
-
-  switch (step) {
-    case 1:
-      return (
-        <MainDetail
-          data={data}
-          nextStep={nextStep}
-          setData={setData}
-          handleChange={handleChange}
-        />
-      );
-    case 2:
-      return (
-        <AddressDetail
-          data={data}
-          nextStep={nextStep}
-          setData={setData}
-          previousStep={previousStep}
-          handleChange={handleChange}
-        />
-      );
-    case 3:
-      return (
-        <PersonalDetail
-          data={data}
-          nextStep={nextStep}
-          setData={setData}
-          previousStep={previousStep}
-          handleChange={handleChange}
-        />
-      );
-    case 4:
-      return (
-        <FinalStep
-          data={data}
-          setData={setData}
-          previousStep={previousStep}
-          handleChange={handleChange}
-          handleSubmit={handleSubmit}
-        />
-      );
-    default:
-      null;
-  }
+  return (
+    <>
+      <section className="FormStepper">
+        <div className={`StepperDetails`}>
+          <span className={`StepperCount ${stepName.name ? "active" : ""}`}>
+            1
+          </span>
+          <span className="CountDetail">Name & Email</span>
+        </div>
+        <div className="DoneLine">
+          <hr className={`${stepName.address ? "active" : ""}`} />
+        </div>
+        <div className={`StepperDetails`}>
+          <span className={`StepperCount ${stepName.address ? "active" : ""}`}>
+            2
+          </span>
+          <span className="CountDetail">Address Detail</span>
+        </div>
+        <div className="DoneLine">
+          <hr className={`${stepName.details ? "active" : ""}`} />
+        </div>
+        <div className={`StepperDetails`}>
+          <span className={`StepperCount ${stepName.details ? "active" : ""}`}>
+            3
+          </span>
+          <span className="CountDetail">Personal Detail</span>
+        </div>
+        <div className="DoneLine">
+          <hr className={`${stepName.submission ? "active" : ""}`} />
+        </div>
+        <div className="StepperDetails">
+          <span
+            className={`StepperCount ${stepName.submission ? "active" : ""}`}
+          >
+            4
+          </span>
+          <span className="CountDetail">Submission</span>
+        </div>
+      </section>
+      <section>
+        <MultiStepSignup step={step} setStep={setStep} />;
+      </section>
+    </>
+  );
 }

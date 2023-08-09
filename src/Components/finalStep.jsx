@@ -25,77 +25,89 @@ export default function finalStep({
     >
       {({ values, errors, touched, handleChange }) => (
         <Form>
-          <div>
-            <label>University</label>
-            <Field
-              type="text"
-              name="college"
-              placeholder=" "
-              value={values.college}
-              onChange={(e) => {
-                handleChange(e);
-                const newData = { ...data, ...values };
-                setData(newData);
-              }}
-            />
-            {errors.college && touched.college ? (
-              <div>{errors.college}</div>
-            ) : null}
+          <div className="FormContainer">
+            <div className="FormFieldContainer">
+              <label className="FormLabel">University</label>
+              <Field
+                type="text"
+                name="college"
+                placeholder="College Name"
+                value={values.college}
+                onChange={(e) => {
+                  handleChange(e);
+                  const newData = { ...data, ...values };
+                  setData(newData);
+                }}
+                className="FormField"
+              />
+              {errors.college && touched.college ? (
+                <i>{errors.college}</i>
+              ) : null}
+            </div>
+            <div className="FormFieldContainer">
+              <label className="FormLabel">Passing year</label>
+              <Field
+                type="number"
+                name="collegePassYear"
+                placeholder="2000"
+                value={values.collegePassYear}
+                onChange={(e) => {
+                  handleChange(e);
+                  const newData = { ...data, ...values };
+                  setData(newData);
+                }}
+                className="FormField"
+              />
+              {errors.collegePassYear && touched.collegePassYear ? (
+                <i>{errors.collegePassYear}</i>
+              ) : null}
+            </div>
+            <div className="FormFieldContainer">
+              <label className="FormLabel">School</label>
+              <Field
+                type="text"
+                name="school"
+                placeholder="School Name"
+                value={values.school}
+                onChange={(e) => {
+                  handleChange(e);
+                  const newData = { ...data, ...values };
+                  setData(newData);
+                }}
+                className="FormField"
+              />
+              {errors.school && touched.school ? <i>{errors.school}</i> : null}
+            </div>
+            <div className="FormFieldContainer">
+              <label className="FormLabel">Passing year</label>
+              <Field
+                type="number"
+                name="schoolPassYear"
+                placeholder="2000"
+                value={values.schoolPassYear}
+                onChange={(e) => {
+                  handleChange(e);
+                  const newData = { ...data, ...values };
+                  setData(newData);
+                }}
+                className="FormField"
+              />
+              {errors.schoolPassYear && touched.schoolPassYear ? (
+                <i>{errors.schoolPassYear}</i>
+              ) : null}
+            </div>
+            <div className="ButtonContainer">
+              <button
+                onClick={previousStep}
+                className="ButtonCls PreviousButton"
+              >
+                &larr; Previous
+              </button>
+              <button type="submit" className="ButtonCls SubmitButton">
+                Submit
+              </button>
+            </div>
           </div>
-          <div>
-            <label>Passing year</label>
-            <Field
-              type="number"
-              name="collegePassYear"
-              placeholder="2000"
-              value={values.collegePassYear}
-              onChange={(e) => {
-                handleChange(e);
-                const newData = { ...data, ...values };
-                setData(newData);
-              }}
-            />
-            {errors.collegePassYear && touched.collegePassYear ? (
-              <div>{errors.collegePassYear}</div>
-            ) : null}
-          </div>
-          <div>
-            <label>School</label>
-            <Field
-              type="text"
-              name="school"
-              placeholder=""
-              value={values.school}
-              onChange={(e) => {
-                handleChange(e);
-                const newData = { ...data, ...values };
-                setData(newData);
-              }}
-            />
-            {errors.school && touched.school ? (
-              <div>{errors.school}</div>
-            ) : null}
-          </div>
-          <div>
-            <label>Passing year</label>
-            <Field
-              type="number"
-              name="schoolPassYear"
-              placeholder="2000"
-              value={values.schoolPassYear}
-              onChange={(e) => {
-                handleChange(e);
-                const newData = { ...data, ...values };
-                setData(newData);
-              }}
-            />
-            {errors.schoolPassYear && touched.schoolPassYear ? (
-              <div>{errors.schoolPassYear}</div>
-            ) : null}
-          </div>
-
-          <button onClick={previousStep}>Previous Step</button>
-          <button type="submit">Submit Details</button>
         </Form>
       )}
     </Formik>

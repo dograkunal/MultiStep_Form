@@ -1,6 +1,7 @@
 import React from "react";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
+import "./style.css";
 
 export default function mainDetail({ data, nextStep, setData }) {
   return (
@@ -21,87 +22,96 @@ export default function mainDetail({ data, nextStep, setData }) {
     >
       {({ values, errors, touched, handleChange }) => (
         <Form>
-          <div>
-            <label>First Name</label>
-
-            <Field
-              name="firstName"
-              id="firstName"
-              placeholder="Bruce"
-              value={values.firstName}
-              onChange={(e) => {
-                handleChange(e);
-                const newData = { ...data, ...values };
-                setData(newData);
-              }}
-            />
-            {errors.firstName && touched.firstName ? (
-              <div>{errors.firstName}</div>
-            ) : null}
+          <div className="FormContainer">
+            <div className="FormFieldContainer">
+              <label className="FormLabel">First Name</label>
+              <Field
+                name="firstName"
+                id="firstName"
+                placeholder="Bruce"
+                value={values.firstName}
+                onChange={(e) => {
+                  handleChange(e);
+                  const newData = { ...data, ...values };
+                  setData(newData);
+                }}
+                className="FormField"
+              />
+              {errors.firstName && touched.firstName ? (
+                <i>{errors.firstName}</i>
+              ) : null}
+            </div>
+            <div className="FormFieldContainer">
+              <label className="FormLabel">Last Name</label>
+              <Field
+                name="lastName"
+                id="lastName"
+                placeholder="Wayne"
+                value={values.lastName}
+                onChange={(e) => {
+                  handleChange(e);
+                  const newData = { ...data, ...values };
+                  setData(newData);
+                }}
+                className="FormField"
+              />
+              {errors.lastName && touched.lastName ? (
+                <i>{errors.lastName}</i>
+              ) : null}
+            </div>
+            <div className="FormFieldContainer">
+              <label className="FormLabel">Age</label>
+              <Field
+                name="age"
+                id="age"
+                type="number"
+                placeholder="30"
+                value={values.age}
+                onChange={handleChange}
+                className="FormField"
+              />
+              {errors.age && touched.age ? <i>{errors.age}</i> : null}
+            </div>
+            <div className="FormFieldContainer">
+              <label className="FormLabel">Email</label>
+              <Field
+                name="email"
+                type="email"
+                placeholder="abx@xyz.com"
+                value={values.email}
+                onChange={(e) => {
+                  handleChange(e);
+                  const newData = { ...data, ...values };
+                  setData(newData);
+                }}
+                className="FormField"
+              />
+              {errors.email && touched.email ? <i>{errors.email}</i> : null}
+            </div>
+            <div className="FormFieldContainer">
+              <label className="FormLabel">Password</label>
+              <Field
+                type="text"
+                name="password"
+                placeholder="XXXXXXXX"
+                value={values.password}
+                onChange={(e) => {
+                  handleChange(e);
+                  const newData = { ...data, ...values };
+                  setData(newData);
+                }}
+                className="FormField"
+              />
+              {errors.password && touched.password ? (
+                <i>{errors.password}</i>
+              ) : null}
+            </div>
+            <div className="ButtonContainer flexEnd">
+              <button type="submit" className="ButtonCls nextButton">
+                Next &rarr;
+              </button>
+            </div>
           </div>
-          <div>
-            <label>Last Name</label>
-            <Field
-              name="lastName"
-              id="lastName"
-              placeholder="Wayne"
-              value={values.lastName}
-              onChange={(e) => {
-                handleChange(e);
-                const newData = { ...data, ...values };
-                setData(newData);
-              }}
-            />
-            {errors.lastName && touched.lastName ? (
-              <div>{errors.lastName}</div>
-            ) : null}
-          </div>
-          <div>
-            <label>Age</label>
-            <Field
-              name="age"
-              id="age"
-              type="number"
-              placeholder="30"
-              value={values.age}
-              onChange={handleChange}
-            />
-            {errors.age && touched.age ? <div>{errors.age}</div> : null}
-          </div>
-          <div>
-            <label>Email</label>
-            <Field
-              name="email"
-              type="email"
-              placeholder="abx@xyz.com"
-              value={values.email}
-              onChange={(e) => {
-                handleChange(e);
-                const newData = { ...data, ...values };
-                setData(newData);
-              }}
-            />
-            {errors.email && touched.email ? <div>{errors.email}</div> : null}
-          </div>
-          <div>
-            <label>Password</label>
-            <Field
-              type="text"
-              name="password"
-              placeholder="XXXXXXXX"
-              value={values.password}
-              onChange={(e) => {
-                handleChange(e);
-                const newData = { ...data, ...values };
-                setData(newData);
-              }}
-            />
-            {errors.password && touched.password ? (
-              <div>{errors.password}</div>
-            ) : null}
-          </div>
-
-          <button type="submit">Next Step</button>
         </Form>
       )}
     </Formik>

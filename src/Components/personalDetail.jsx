@@ -23,76 +23,92 @@ export default function personalDetail({
     >
       {({ values, errors, touched, handleChange }) => (
         <Form>
-          <div>
-            <label>Father's Name</label>
-            <Field
-              type="text"
-              name="fathername"
-              placeholder="Thomas Wayne"
-              value={values.fathername}
-              onChange={(e) => {
-                handleChange(e);
-                const newData = { ...data, ...values };
-                setData(newData);
-              }}
-            />
-            {errors.fathername && touched.fathername ? (
-              <div>{errors.fathername}</div>
-            ) : null}
+          <div className="FormContainer">
+            <div className="FormFieldContainer">
+              <label className="FormLabel">Father's Name</label>
+              <Field
+                type="text"
+                name="fathername"
+                placeholder="Thomas Wayne"
+                value={values.fathername}
+                onChange={(e) => {
+                  handleChange(e);
+                  const newData = { ...data, ...values };
+                  setData(newData);
+                }}
+                className="FormField"
+              />
+              {errors.fathername && touched.fathername ? (
+                <i>{errors.fathername}</i>
+              ) : null}
+            </div>
+            <div className="FormFieldContainer">
+              <label className="FormLabel">Mother's Name</label>
+              <Field
+                type="text"
+                name="mothername"
+                placeholder="Martha Wayne"
+                value={values.mothername}
+                onChange={(e) => {
+                  handleChange(e);
+                  const newData = { ...data, ...values };
+                  setData(newData);
+                }}
+                className="FormField"
+              />
+              {errors.mothername && touched.mothername ? (
+                <i>{errors.mothername}</i>
+              ) : null}
+            </div>
+            <div className="FormFieldContainer">
+              <label className="FormLabel">Father's Occupation</label>
+              <Field
+                type="text"
+                name="fatherOccupation"
+                placeholder="Bussiness/Salaried"
+                value={values.fatherOccupation}
+                onChange={(e) => {
+                  handleChange(e);
+                  const newData = { ...data, ...values };
+                  setData(newData);
+                }}
+                className="FormField"
+              />
+              {errors.fatherOccupation && touched.fatherOccupation ? (
+                <i>{errors.fatherOccupation}</i>
+              ) : null}
+            </div>
+            <div className="FormFieldContainer">
+              <label className="FormLabel">Mother's Occupation</label>
+              <Field
+                type="text"
+                name="motherOccupation"
+                placeholder="HouseMaker/Salaried"
+                value={values.motherOccupation}
+                onChange={(e) => {
+                  handleChange(e);
+                  const newData = { ...data, ...values };
+                  setData(newData);
+                }}
+                className="FormField"
+              />
+              {errors.motherOccupation && touched.motherOccupation ? (
+                <i>{errors.motherOccupation}</i>
+              ) : null}
+            </div>
+
+            <div className="ButtonContainer">
+              <button
+                onClick={previousStep}
+                className="ButtonCls PreviousButton"
+              >
+                &larr; Previous
+              </button>
+              <button type="submit" className="ButtonCls nextButton">
+                Next &rarr;
+              </button>
+            </div>
           </div>
-          <div>
-            <label>Mother's Name</label>
-            <Field
-              type="text"
-              name="mothername"
-              placeholder="Martha Wayne"
-              value={values.mothername}
-              onChange={(e) => {
-                handleChange(e);
-                const newData = { ...data, ...values };
-                setData(newData);
-              }}
-            />
-            {errors.mothername && touched.mothername ? (
-              <div>{errors.mothername}</div>
-            ) : null}
-          </div>
-          <div>
-            <label>Father's Occupation</label>
-            <Field
-              type="text"
-              name="fatherOccupation"
-              placeholder="Bussiness/Salaried"
-              value={values.fatherOccupation}
-              onChange={(e) => {
-                handleChange(e);
-                const newData = { ...data, ...values };
-                setData(newData);
-              }}
-            />
-            {errors.fatherOccupation && touched.fatherOccupation ? (
-              <div>{errors.fatherOccupation}</div>
-            ) : null}
-          </div>
-          <div>
-            <label>Mother's Occupation</label>
-            <Field
-              type="text"
-              name="motherOccupation"
-              placeholder="HouseMaker/Salaried"
-              value={values.motherOccupation}
-              onChange={(e) => {
-                handleChange(e);
-                const newData = { ...data, ...values };
-                setData(newData);
-              }}
-            />
-            {errors.motherOccupation && touched.motherOccupation ? (
-              <div>{errors.motherOccupation}</div>
-            ) : null}
-          </div>
-          <button onClick={previousStep}>Previous Step</button>
-          <button type="submit">Next Step</button>
         </Form>
       )}
     </Formik>

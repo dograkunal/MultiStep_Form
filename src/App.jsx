@@ -1,9 +1,13 @@
-import MultiStepSignup from "./Components/index";
+import FormContainer from "./Components/index";
+import "./App.css";
 
 function App() {
   return (
     <>
-      <MultiStepSignup />
+      <header>Welcome!</header>
+      <section>
+        <FormContainer />
+      </section>
     </>
   );
 }
